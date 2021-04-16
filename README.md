@@ -1,0 +1,2 @@
+# fucking_ts
+TypeScript.
