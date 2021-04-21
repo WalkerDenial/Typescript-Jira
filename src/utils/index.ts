@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { idText } from "typescript";
 
 export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
 

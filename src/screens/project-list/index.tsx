@@ -12,16 +12,16 @@ export const ProjectListScreen = () => {
     name: "",
     personId: "",
   });
-  const debouncedParam = useDebounce(param, 200)
+  const debouncedParam = useDebounce(param, 200);
   const [list, setList] = useState([]);
   useEffect(() => {
-    fetch(`${apiUrl}/projects?${qs.stringify(cleanObject(debouncedParam))}`).then(
-      async (response) => {
-        if (response.ok) {
-          setList(await response.json());
-        }
+    fetch(
+      `${apiUrl}/projects?${qs.stringify(cleanObject(debouncedParam))}`
+    ).then(async (response) => {
+      if (response.ok) {
+        setList(await response.json());
       }
-    );
+    });
   }, [debouncedParam]);
 
   useMount(() => {
