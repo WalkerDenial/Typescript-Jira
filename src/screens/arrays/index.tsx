@@ -2,20 +2,20 @@ import { useArray } from "utils";
 
 export const ArrayTestPage = () => {
   const data = ["Jack", "Tom", "Tina"];
-  const arrayHook = useArray(data);
+  const { value, clear, removeIndex, add } = useArray(data);
   return (
     <div>
       <div>
-        <button onClick={() => arrayHook.add("test")}>Add</button>
+        <button onClick={() => add("test")}>Add</button>
       </div>
       <div>
-        <button onClick={() => arrayHook.removeIndex(0)}>Remove first</button>
+        <button onClick={() => removeIndex(0)}>Remove first</button>
       </div>
       <div>
-        <button onClick={() => arrayHook.clear()}>Clear</button>
+        <button onClick={() => clear()}>Clear</button>
       </div>
       <div>
-        {arrayHook.value.map((v, index) => (
+        {value.map((v, index) => (
           <p key={index + v}>{index + v}</p>
         ))}
       </div>
