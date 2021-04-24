@@ -1,5 +1,4 @@
 import { FormEvent } from "react"
-import { login } from 'auth-provider'
 import { useAuth } from "context/auth-context"
 
 export const LoginScreen = () => {
