@@ -1,5 +1,6 @@
 import { useAuth } from "context/auth-context"
 import { Button, Form, Input } from 'antd'
+import { LongButton } from "unauthenticated-app"
 
 export const LoginScreen = () => {
     const { login } = useAuth()
@@ -14,7 +15,7 @@ export const LoginScreen = () => {
             <Input placeholder={'密码'} type="password" id={'password'} />
         </Form.Item>
         <Form.Item>
-            <Button type={"primary"} htmlType={'submit'}>登录</Button>
+            <LongButton type={"primary"} htmlType={'submit'}>登录</LongButton>
         </Form.Item>
     </Form>
 }
