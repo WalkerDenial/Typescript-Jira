@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -7,12 +6,10 @@ import { AppProviders } from 'context';
 import 'antd/dist/antd.less'
 
 loadServer(() => ReactDOM.render(
-  <React.StrictMode>
-    <AppProviders>
-      <DevTools />
-      <App />
-    </AppProviders>
-  </React.StrictMode>,
+  <AppProviders>
+    <DevTools />
+    <App />
+  </AppProviders>,
   document.getElementById('root')
 ))
 

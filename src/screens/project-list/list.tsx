@@ -46,6 +46,6 @@ export const List = ({ users, list }: ListProps) => {
           {project.created ? dayjs(project.created).format('YYYY-MM-DD') : '无'}
         </span>
       }
-    }]} dataSource={list} />
+    }]} dataSource={list} rowKey={"id"} />
   );
 };
