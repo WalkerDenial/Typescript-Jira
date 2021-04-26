@@ -4,9 +4,10 @@ import { useAuth } from "context/auth-context";
 import { ProjectListScreen } from "screens/project-list";
 import { ReactComponent as Logo } from 'assets/software-logo.svg';
 import { Button, Dropdown, Menu } from "antd";
-import { Route, Routes } from 'react-router';
+import { Route, Routes, Navigate } from 'react-router';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ProjectScreen } from "screens/project";
+import { resetRoute } from "utils";
 
 export const AuthenticatedApp = () => {
 
@@ -18,6 +19,7 @@ export const AuthenticatedApp = () => {
           <Routes>
             <Route path={'/projects'} element={<ProjectListScreen />}></Route>
             <Route path={'/projects/:projectId/*'} element={<ProjectScreen />} />
+            <Navigate to={window.location.pathname + '/projects'} />
           </Routes>
         </Router>
       </Main>
@@ -29,7 +31,9 @@ const PageHeader = () => {
   const { logout, user } = useAuth();
   return <Header between={true}>
     <HeaderLeft gap={true}>
-      <Logo width={'18rem'} color={'rgb(38, 132, 255)'} />
+      <Button type={'link'} onClick={resetRoute}>
+        <Logo width={'18rem'} color={'rgb(38, 132, 255)'} />
+      </Button>
       <h2>项目</h2>
       <h2>用户</h2>
     </HeaderLeft>
