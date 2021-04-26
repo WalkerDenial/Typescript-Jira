@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
 
@@ -48,7 +48,7 @@ export const useArray = <T>(initialArray: T[]) => {
 };
 
 export const useDocumentTitle = (title: string, keepOnUnmount: boolean = false) => {
-  const oldTitle = document.title
+  const oldTitle = useRef(document.title).current
   useEffect(() => {
     document.title = title
   }, [title])
@@ -60,5 +60,5 @@ export const useDocumentTitle = (title: string, keepOnUnmount: boolean = false) 
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [keepOnUnmount, oldTitle])
 }
