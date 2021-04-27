@@ -1,6 +1,6 @@
 import * as auth from 'auth-provider'
 import { FullPageErrorFallback, FullPageLoading } from 'components/lib'
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode } from 'react'
 import { User } from 'screens/project-list/search-panel'
 import { useMount } from 'utils'
 import { http } from 'utils/http'
