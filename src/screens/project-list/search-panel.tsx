@@ -14,7 +14,7 @@ export interface User {
 
 interface SearchPanelProps {
   users: User[];
-  param: Partial<Pick<Project, 'name' | 'personId'>>;
+  param: Partial<Pick<Project, "name" | "personId">>;
   setParam: (param: SearchPanelProps["param"]) => void;
 }
 
@@ -35,11 +35,16 @@ export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
         />
       </Form.Item>
       <Form.Item>
-        <UserSlect defaultOptionName={'负责人'} value={param.personId} onChange={(value) =>
-          setParam({
-            ...param,
-            personId: value,
-          })} />
+        <UserSlect
+          defaultOptionName={"负责人"}
+          value={param.personId}
+          onChange={(value) =>
+            setParam({
+              ...param,
+              personId: value,
+            })
+          }
+        />
       </Form.Item>
     </MarginForm>
   );

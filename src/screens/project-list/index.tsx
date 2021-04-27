@@ -9,7 +9,9 @@ import { useProjectsSearchParams } from "./util";
 
 export const ProjectListScreen = () => {
   const [param, setParam] = useProjectsSearchParams();
-  const { isLoading, error, data: list } = useProject(useDebounce(param, 200));
+  const { isLoading, error, data: list, retry } = useProject(
+    useDebounce(param, 200)
+  );
   const { data: users } = useUsers();
 
   return (
@@ -19,12 +21,17 @@ export const ProjectListScreen = () => {
       {error ? (
         <Typography.Text type={"danger"}>{error.message}</Typography.Text>
       ) : null}
-      <List users={users || []} dataSource={list || []} loading={isLoading} />
+      <List
+        refresh={retry}
+        users={users || []}
+        dataSource={list || []}
+        loading={isLoading}
+      />
     </Container>
   );
 };
 
-ProjectListScreen.whyDidYouRender = true
+ProjectListScreen.whyDidYouRender = true;
 
 const Container = styled.div`
   padding: 3.2rem;
