@@ -13,13 +13,15 @@ export const ProjectListScreen = () => {
     personId: "",
   });
   const debouncedParam = useDebounce(param, 200);
-  const { isLoading, error, data: list } = useProject(debouncedParam)
-  const { data: users } = useUsers()
+  const { isLoading, error, data: list } = useProject(debouncedParam);
+  const { data: users } = useUsers();
   return (
     <Container>
       <h1>项目列表</h1>
       <SearchPanel users={users || []} param={param} setParam={setParam} />
-      {error ? <Typography.Text type={'danger'} >{error.message}</Typography.Text> : null}
+      {error ? (
+        <Typography.Text type={"danger"}>{error.message}</Typography.Text>
+      ) : null}
       <List users={users || []} dataSource={list || []} loading={isLoading} />
     </Container>
   );
@@ -27,4 +29,4 @@ export const ProjectListScreen = () => {
 
 const Container = styled.div`
   padding: 3.2rem;
-`
+`;

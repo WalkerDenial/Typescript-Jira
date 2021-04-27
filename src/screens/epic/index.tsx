@@ -1,3 +1,3 @@
 export const EpicScreen = () => {
-    return <h1>Epic</h1>
-}
+  return <h1>Epic</h1>;
+};

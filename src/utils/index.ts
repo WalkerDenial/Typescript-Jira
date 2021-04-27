@@ -2,7 +2,8 @@ import { useEffect, useState, useRef } from "react";
 
 export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
 
-export const isVoid = (value: unknown) => value === undefined || value === null || value === ''
+export const isVoid = (value: unknown) =>
+  value === undefined || value === null || value === "";
 
 export const cleanObject = (object?: { [key: string]: unknown }) => {
   if (!object) return {};
@@ -47,20 +48,23 @@ export const useArray = <T>(initialArray: T[]) => {
   };
 };
 
-export const useDocumentTitle = (title: string, keepOnUnmount: boolean = false) => {
-  const oldTitle = useRef(document.title).current
+export const useDocumentTitle = (
+  title: string,
+  keepOnUnmount: boolean = false
+) => {
+  const oldTitle = useRef(document.title).current;
   useEffect(() => {
-    document.title = title
-  }, [title])
+    document.title = title;
+  }, [title]);
 
   useEffect(() => {
     return () => {
       if (!keepOnUnmount) {
-        document.title = oldTitle
+        document.title = oldTitle;
       }
-    }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [keepOnUnmount, oldTitle])
-}
+  }, [keepOnUnmount, oldTitle]);
+};
 
-export const resetRoute = () => window.location.href = window.location.origin
+export const resetRoute = () => (window.location.href = window.location.origin);

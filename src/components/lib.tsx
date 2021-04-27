@@ -15,9 +15,9 @@ export const Row = styled.div<{
     margin-top: 0 !important;
     margin-bottom: 0 !important;
     margin-right: ${(props) =>
-    typeof props.gap === "number"
-      ? props.gap + "rem"
-      : props.gap
+      typeof props.gap === "number"
+        ? props.gap + "rem"
+        : props.gap
         ? "2rem"
         : undefined};
   }
@@ -26,16 +26,19 @@ export const Row = styled.div<{
 const FullPage = styled.div`
   height: 100vh;
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
 `;
 
-export const FullPageLoading = () => <FullPage>
-  <Spin size={'large'} />
-</FullPage>
+export const FullPageLoading = () => (
+  <FullPage>
+    <Spin size={"large"} />
+  </FullPage>
+);
 
-
-export const FullPageErrorFallback = ({ error }: { error: Error | null }) => <FullPage>
-  <DevTools />
-  <Typography.Text type={'danger'}>{error?.message}</Typography.Text>
-</FullPage>
+export const FullPageErrorFallback = ({ error }: { error: Error | null }) => (
+  <FullPage>
+    <DevTools />
+    <Typography.Text type={"danger"}>{error?.message}</Typography.Text>
+  </FullPage>
+);
