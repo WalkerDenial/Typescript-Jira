@@ -2,7 +2,6 @@
   "name": "typescript_jira",
   "version": "0.1.0",
   "private": true,
-  "license": "MIT",
   "dependencies": {
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
@@ -16,6 +15,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.2",
+    "@welldone-software/why-did-you-render": "^6.1.1",
     "antd": "^4.15.2",
     "craco-less": "^1.17.1",
     "dayjs": "^1.10.4",
@@ -35,7 +35,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "yarn prettier --write ."
   },
   "eslintConfig": {
     "extends": [
