@@ -9,8 +9,8 @@ export const useUrlQueryParam = <T extends string>(keys: T[]) => {
       () =>
         keys.reduce((prev, key) => {
           return { ...prev, [key]: searchParams.get(key) || "" };
-          // eslint-disable-next-line react-hooks/exhaustive-deps
         }, {} as { [key in T]: string }),
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       [searchParams]
     ),
     (params: Partial<{ [key in T]: unknown }>) => {
