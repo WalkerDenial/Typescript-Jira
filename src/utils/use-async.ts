@@ -72,7 +72,7 @@ export const useAsync = <T>(
           return error;
         });
     },
-    [config.throwOnError, mountedRef, setData, state, setError]
+    [config.throwOnError, mountedRef, setData, setError]
   );
   return {
     isIdle: state.stat === "idle",
