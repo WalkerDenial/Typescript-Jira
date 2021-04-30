@@ -9,16 +9,24 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ProjectScreen } from "screens/project";
 import { resetRoute } from "utils";
 import { useState } from "react";
+import { ProjectModal } from "screens/project-list/project-modal";
+import { ProjectPopover } from "components/project-popover";
+import { ButtonNoPadding } from "./components/lib";
 
 export const AuthenticatedApp = () => {
-  const [projectModalOpen, setprojectModalOpen] = useState(false);
+  const [projectModalOpen, setProjectModalOpen] = useState(false);
   return (
     <Container>
-      <PageHeader />
+      <PageHeader setProjectModalOpen={setProjectModalOpen} />
       <Main>
         <Router>
           <Routes>
-            <Route path={"/projects"} element={<ProjectListScreen />}></Route>
+            <Route
+              path={"/projects"}
+              element={
+                <ProjectListScreen setProjectModalOpen={setProjectModalOpen} />
+              }
+            ></Route>
             <Route
               path={"/projects/:projectId/*"}
               element={<ProjectScreen />}
@@ -27,20 +35,26 @@ export const AuthenticatedApp = () => {
           </Routes>
         </Router>
       </Main>
+      <ProjectModal
+        projectModalOPen={projectModalOpen}
+        onClose={() => setProjectModalOpen(false)}
+      />
     </Container>
   );
 };
 
-const PageHeader = () => {
+const PageHeader = (props: {
+  setProjectModalOpen: (isOpen: boolean) => void;
+}) => {
   const { logout, user } = useAuth();
   return (
     <Header between={true}>
       <HeaderLeft gap={true}>
-        <Button type={"link"} onClick={resetRoute}>
+        <ButtonNoPadding type={"link"} onClick={resetRoute}>
           <Logo width={"18rem"} color={"rgb(38, 132, 255)"} />
-        </Button>
-        <h2>项目</h2>
-        <h2>用户</h2>
+        </ButtonNoPadding>
+        <ProjectPopover setProjectModalOpen={props.setProjectModalOpen} />
+        <span>用户</span>
       </HeaderLeft>
       <HeaderRight>
         <Dropdown
