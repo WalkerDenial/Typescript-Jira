@@ -8,8 +8,10 @@ import { Route, Routes, Navigate } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ProjectScreen } from "screens/project";
 import { resetRoute } from "utils";
+import { useState } from "react";
 
 export const AuthenticatedApp = () => {
+  const [projectModalOpen, setprojectModalOpen] = useState(false);
   return (
     <Container>
       <PageHeader />
