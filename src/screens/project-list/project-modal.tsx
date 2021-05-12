@@ -26,13 +26,17 @@ export const ProjectModal = () => {
       close();
     });
   };
+  const closeModal = () => {
+    form.resetFields();
+    close();
+  };
   useEffect(() => {
-    editingProject ? form.setFieldsValue(editingProject) : form.resetFields();
+    form.setFieldsValue(editingProject);
   }, [editingProject, form]);
   return (
     <Drawer
       forceRender={true}
-      onClose={close}
+      onClose={closeModal}
       visible={projectModalOpen}
       width={"100%"}
     >
