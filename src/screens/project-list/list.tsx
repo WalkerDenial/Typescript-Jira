@@ -102,6 +102,7 @@ const More = ({ project }: { project: Project }) => {
       onOk() {
         deleteProject({ id });
       },
+      cancelText: "取消",
     });
   };
   return (
