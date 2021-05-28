@@ -44,5 +44,4 @@ export const ColumnsContainer = styled.div`
   display: flex;
   overflow-x: scroll;
   flex: 1;
-  overflow: hidden;
 `;
