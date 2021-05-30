@@ -29,11 +29,12 @@ export const TaskModal = () => {
   };
 
   useEffect(() => {
-    form.setFieldsValue(editTask);
+    form.setFieldsValue(editingTask);
   }, [form, editingTask]);
 
   return (
     <Modal
+      forceRender={true}
       onCancel={onCancel}
       onOk={onOk}
       okText={"确认"}
@@ -54,7 +55,7 @@ export const TaskModal = () => {
           <UserSlect defaultOptionName={"经办人"} />
         </Form.Item>
         <Form.Item label={"类型"} name={"typeId"}>
-          <TaskTypeSelect />
+          <TaskTypeSelect defaultOptionName={""} />
         </Form.Item>
       </Form>
     </Modal>
