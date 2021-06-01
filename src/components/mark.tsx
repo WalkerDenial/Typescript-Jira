@@ -5,7 +5,6 @@ export const Mark = ({ name, keyword }: { name: string; keyword: string }) => {
   const arr = name.split(keyword);
   return (
     <>
-      {" "}
       {arr.map((str, index) => (
         <span key={index}>
           {str}
