@@ -51,7 +51,11 @@ export const KanbanColumn = React.forwardRef<
         <More kanban={kanban} key={kanban.id} />
       </Row>
       <TasksContainer>
-        <Drop type={"ROW"} direction={"vertical"} droppableId={`${kanban.id}`}>
+        <Drop
+          type={"ROW"}
+          direction={"vertical"}
+          droppableId={String(kanban.id)}
+        >
           <DropChild>
             {tasks?.map((task, taskIndex) => (
               <Drag
