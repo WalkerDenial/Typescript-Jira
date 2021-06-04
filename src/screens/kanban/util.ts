@@ -18,6 +18,7 @@ export const useKanbanSearchParams = () => ({ projectId: useProjectIdInUrl() });
 export const useKanbansQueryKey = () => ["kanbans", useKanbanSearchParams()];
 
 export const useTaskSearchParams = () => {
+  // eslint-disable-next-line
   const [param, setParam] = useUrlQueryParam([
     "name",
     "typeId",

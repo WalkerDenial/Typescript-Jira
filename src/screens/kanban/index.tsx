@@ -90,7 +90,7 @@ export const useDragEnd = () => {
         const toTask = allTasks?.filter((task) => task.kanbanId === toKanbanId)[
           destination.index
         ];
-        if (fromTask.id === toTask.id) return;
+        if (fromTask?.id === toTask?.id) return;
         reorderTask({
           fromId: fromTask?.id,
           referenceId: toTask?.id,
