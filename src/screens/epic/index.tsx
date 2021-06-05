@@ -1,31 +1,45 @@
 import { Button, List } from "antd";
 import { Row, ScreenContainer } from "components/lib";
 import dayjs from "dayjs";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useProjectInUrl } from "screens/kanban/util";
 import { useDeleteEpic, useEpics } from "utils/epic";
 import { useTasks } from "utils/task";
-import { useEpicsQueryKey } from "./util";
+import { CreateEpic } from "./create-epic";
+import { useEpicSearchParams, useEpicsQueryKey } from "./util";
 
 export const EpicScreen = () => {
   const { data: currentProject } = useProjectInUrl();
-  const { data: epics } = useEpics();
+  const { data: epics } = useEpics(useEpicSearchParams());
   const { data: tasks } = useTasks({ projectId: currentProject?.id });
   const { mutate: deleteEpic } = useDeleteEpic(useEpicsQueryKey());
+  const [epicCreateOpen, setEpicCreateOpen] = useState(false);
 
   return (
     <ScreenContainer>
-      <h1>{currentProject?.name}</h1>
+      <Row between={true}>
+        <h1>{currentProject?.name}</h1>
+        <Button onClick={() => setEpicCreateOpen(true)} type={"link"}>
+          创建任务组
+        </Button>
+      </Row>
       <List
         dataSource={epics}
         itemLayout={"vertical"}
+        style={{ overflow: "scroll" }}
         renderItem={(epic) => (
           <List.Item>
             <List.Item.Meta
               title={
                 <Row between={true}>
                   <span>{epic.name}</span>
-                  <Button type={"link"}>删除</Button>
+                  <Button
+                    type={"link"}
+                    onClick={() => deleteEpic({ id: epic.id })}
+                  >
+                    删除
+                  </Button>
                 </Row>
               }
               description={
@@ -49,6 +63,10 @@ export const EpicScreen = () => {
             </div>
           </List.Item>
         )}
+      />
+      <CreateEpic
+        onClose={async () => setEpicCreateOpen(false)}
+        visible={epicCreateOpen}
       />
     </ScreenContainer>
   );

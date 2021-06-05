@@ -2,7 +2,8 @@ import styled from "@emotion/styled";
 import { Button, Drawer, DrawerProps, Form, Input, Spin } from "antd";
 import { useForm } from "antd/lib/form/Form";
 import { ErrorBox } from "components/lib";
-import { UserSlect } from "components/user-select";
+import { useEffect } from "react";
+import { useProjectIdInUrl } from "screens/kanban/util";
 import { useAddEpic } from "utils/epic";
 import { useEpicsQueryKey } from "./util";
 
@@ -11,10 +12,17 @@ export const CreateEpic = (
 ) => {
   const { mutate: addEpic, isLoading, error } = useAddEpic(useEpicsQueryKey());
   const [form] = useForm();
+  const projectId = useProjectIdInUrl();
+
   const onFinish = async (values: any) => {
-    await addEpic(values);
+    await addEpic({ ...values, projectId });
     props.onClose();
   };
+
+  useEffect(() => {
+    form.resetFields();
+  }, [form, props.visible]);
+
   return (
     <Drawer
       visible={props.visible}
@@ -39,23 +47,14 @@ export const CreateEpic = (
               <Form.Item
                 label={"名称"}
                 name={"name"}
-                rules={[{ required: true, message: "请输入项目名称" }]}
+                rules={[{ required: true, message: "请输入任务组名称" }]}
               >
-                <Input placeholder={"请输入项目名称"} />
+                <Input placeholder={"请输入任务组名称"} />
               </Form.Item>
-              <Form.Item
-                label={"部门"}
-                name={"organization"}
-                rules={[{ required: true, message: "请输入部门名" }]}
-              >
-                <Input placeholder={"请输入部门名"} />
-              </Form.Item>
-              <Form.Item label={"负责人"} name={"personId"}>
-                <UserSlect defaultOptionName={"负责人"} />
-              </Form.Item>
+
               <Form.Item style={{ textAlign: "right" }}>
                 <Button
-                  loading={mutateLoading}
+                  loading={isLoading}
                   type={"primary"}
                   htmlType={"submit"}
                 >
