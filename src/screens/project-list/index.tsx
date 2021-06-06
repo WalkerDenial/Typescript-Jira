@@ -1,11 +1,16 @@
 import { SearchPanel } from "./search-panel";
 import { List } from "./list";
 import { useDebounce } from "utils";
-import styled from "@emotion/styled";
 import { useProjects } from "../../utils/project";
 import { useUsers } from "utils/user";
 import { useProjectModal, useProjectsSearchParams } from "./util";
-import { ButtonNoPadding, ErrorBox, Row } from "components/lib";
+import {
+  ButtonNoPadding,
+  ErrorBox,
+  Row,
+  ScreenContainer,
+} from "components/lib";
+import { Profiler } from "components/profiler";
 
 export const ProjectListScreen = () => {
   const [param, setParam] = useProjectsSearchParams();
@@ -13,23 +18,20 @@ export const ProjectListScreen = () => {
   const { data: users } = useUsers();
   const { open } = useProjectModal();
   return (
-    <Container>
-      <Row between={true}>
-        <h1>项目列表</h1>
-        <ButtonNoPadding onClick={open} type="link">
-          创建项目
-        </ButtonNoPadding>
-      </Row>
-      <SearchPanel users={users || []} param={param} setParam={setParam} />
-      <ErrorBox error={error} />
-      <List users={users || []} dataSource={list || []} loading={isLoading} />
-    </Container>
+    <Profiler id={"项目列表"}>
+      <ScreenContainer>
+        <Row between={true}>
+          <h1>项目列表</h1>
+          <ButtonNoPadding onClick={open} type="link">
+            创建项目
+          </ButtonNoPadding>
+        </Row>
+        <SearchPanel users={users || []} param={param} setParam={setParam} />
+        <ErrorBox error={error} />
+        <List users={users || []} dataSource={list || []} loading={isLoading} />
+      </ScreenContainer>
+    </Profiler>
   );
 };
 
 ProjectListScreen.whyDidYouRender = false;
-
-const Container = styled.div`
-  padding: 3.2rem;
-  width: 100%;
-`;
