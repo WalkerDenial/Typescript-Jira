@@ -7,12 +7,13 @@ import { useDeleteProject, useEditProject } from "utils/project";
 import { ButtonNoPadding } from "components/lib";
 import { useProjectModal, useProjectsQueryKey } from "./util";
 import { Project } from "types/project";
+import React from "react";
 
 interface ListProps extends TableProps<Project> {
   users: User[];
 }
 
-export const List = ({ users, ...props }: ListProps) => {
+export const List = React.memo(({ users, ...props }: ListProps) => {
   const { mutate } = useEditProject(useProjectsQueryKey());
   const pinProject = (id: number) => (pin: boolean) => mutate({ id, pin });
 
@@ -80,7 +81,7 @@ export const List = ({ users, ...props }: ListProps) => {
       {...props}
     />
   );
-};
+});
 
 const More = ({ project }: { project: Project }) => {
   const { startEdit } = useProjectModal();
