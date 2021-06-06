@@ -8,7 +8,7 @@ import left from "assets/left.svg";
 import right from "assets/right.svg";
 import { ErrorBox } from "components/lib";
 
-export const UnauthenticatedApp = () => {
+const UnauthenticatedApp = () => {
   const [isRegister, setIsRegister] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   return (
@@ -76,3 +76,5 @@ const Title = styled.h2`
 export const LongButton = styled(Button)`
   width: 100%;
 `;
+
+export default UnauthenticatedApp;
