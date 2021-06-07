@@ -60,11 +60,13 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^7.0.0",
     "@types/qs": "^6.9.6",
     "@types/react-beautiful-dnd": "^13.0.0",
     "eslint-config-prettier": "^8.2.0",
     "husky": "^6.0.0",
     "lint-staged": ">=10",
+    "msw": "^0.29.0",
     "prettier": "^2.2.1"
   },
   "msw": {
