@@ -1,3 +1,4 @@
+import { act, renderHook } from "@testing-library/react-hooks";
 import { useAsync } from "utils/use-async";
 
 const defaultState: ReturnType<typeof useAsync> = {
@@ -34,5 +35,23 @@ test("useAsync 可以异步处理", async () => {
   const promise = new Promise((res, rej) => {
     resolve = res;
     reject = rej;
+  });
+
+  const { result } = renderHook(() => useAsync());
+  expect(result.current).toEqual(defaultState);
+
+  let p: Promise<any>;
+  act(() => {
+    p = result.current.run(promise);
+  });
+  expect(result.current).toEqual(loadingState);
+  const resolvedValue = { mockValue: "resolved" };
+  await act(async () => {
+    resolve(resolvedValue);
+    await p;
+  });
+  expect(result.current).toEqual({
+    ...successState,
+    data: resolvedValue,
   });
 });
