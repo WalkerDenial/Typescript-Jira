@@ -16,20 +16,15 @@ import { UserPopover } from "components/user-popover";
 const AuthenticatedApp = () => {
   return (
     <Container>
-      <Router>
-        <PageHeader />
-        <Main>
-          <Routes>
-            <Route path={"/projects"} element={<ProjectListScreen />} />
-            <Route
-              path={"/projects/:projectId/*"}
-              element={<ProjectScreen />}
-            />
-            <Navigate to={window.location.pathname + "/projects"} />
-          </Routes>
-        </Main>
-        <ProjectModal />
-      </Router>
+      <PageHeader />
+      <Main>
+        <Routes>
+          <Route path={"/projects"} element={<ProjectListScreen />} />
+          <Route path={"/projects/:projectId/*"} element={<ProjectScreen />} />
+          <Navigate to={window.location.pathname + "/projects"} />
+        </Routes>
+      </Main>
+      <ProjectModal />
     </Container>
   );
 };
